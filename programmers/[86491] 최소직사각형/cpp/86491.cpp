@@ -1,15 +1,14 @@
 #include <bits/stdc++.h>
 #define pii pair<int, int>
-
+constexpr int INF = 987654321;
 using namespace std;
 
-priority_queue<int> pq_big, pq_small;
-
 int solution(vector<vector<int>> sizes) {
-    for(auto size : sizes){
-        if(size[0] > size[1]) pq_big.push(size[0]), pq_small.push(size[1]);
-        else pq_big.push(size[1]), pq_small.push(size[0]);
+    int sm = 0, lar = 0;
+    for(auto size : sizes){        
+        sm = max(sm, min(size[0], size[1]));
+        lar = max(lar, max(size[0], size[1]));
     }
            
-    return pq_big.top() * pq_small.top();
+    return sm * lar;
 }
